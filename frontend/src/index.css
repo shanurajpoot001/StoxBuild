@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding-top: 70px; /* Navbar height jitni */
+}
+
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.nav-link{
+  margin-left: 40px;
+}
+
+/* ------------------------------
+   Responsive utilities
+   Mobile-first breakpoints
+------------------------------- */
+:root {
+  --container-padding: 16px;
+}
+
+/* Small devices (≥576px) */
+@media (min-width: 576px) {
+  :root { --container-padding: 20px; }
+}
+
+/* Medium devices (≥768px) */
+@media (min-width: 768px) {
+  :root { --container-padding: 24px; }
+}
+
+/* Large devices (≥992px) */
+@media (min-width: 992px) {
+  :root { --container-padding: 28px; }
+}
+
+/* XL devices (≥1200px) */
+@media (min-width: 1200px) {
+  :root { --container-padding: 32px; }
+}
+
+.container,
+.container-fluid {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Navbar tweaks for mobile */
+/* Keep logo normal on md/lg; only limit on very small screens */
+@media (max-width: 576px) {
+  .navbar .navbar-brand img { max-width: 140px; height: auto; }
+}
+
+@media (max-width: 576px) {
+  body { padding-top: 60px; }
+  .nav-link { margin-left: 0; }
+  .navbar .container { padding-left: 12px; padding-right: 12px; }
+}
+
+/* Support section responsive */
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+@media (max-width: 768px) {
+  #supportWrapper { flex-direction: column; gap: 16px; margin: 0 24px; }
+}
+
+/* ------------------------------
+   Generic landing responsiveness
+------------------------------- */
+img { max-width: 100%; height: auto; }
+
+/* Headings scale down on small screens */
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  .fs-4 { font-size: 1.1rem !important; }
+}
+
+/* Stack side-by-side sections */
+.row.stack-on-sm { display: flex; gap: 16px; }
+@media (max-width: 768px) {
+  .row.stack-on-sm { flex-direction: column; }
+}
+
+/* Constrain long text blocks for readability */
+.content-narrow { max-width: 920px; margin-left: auto; margin-right: auto; }
+@media (max-width: 768px) {
+  .content-narrow { padding-left: 8px; padding-right: 8px; }
+}
+
+/* Cards/sections padding */
+.section, .card, .p-3 { border-radius: 8px; }
+@media (max-width: 576px) {
+  .p-3 { padding: 0.75rem !important; }
+}
+
+/* Tables: enable horizontal scroll on small screens */
+.table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 768px) {
+  table { min-width: 640px; }
+}
+
+/* Forms spacing on auth pages */
+.login-page, .signup-page { max-width: 420px; }
+@media (max-width: 576px) {
+  .login-page, .signup-page { padding-left: 12px; padding-right: 12px; }
+  .form-control { font-size: 0.95rem; padding: 0.6rem 0.75rem; }
+}
+
+
+#supportHero{
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+
+#supportHero a{
+  color: white;
+}
+
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+#supportHero input{
+  padding: 20px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+
+/* css for signup login
+ */
+
+ 
