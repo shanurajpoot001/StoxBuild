@@ -22,7 +22,10 @@ const app = express();
 // CORS first, before routes
 app.use(
   cors({
-    origin: process.env.FRONTEND_ORIGIN || "http://localhost:3000",
+    origin: [
+      process.env.FRONTEND_ORIGIN || "http://localhost:3000",
+      "http://localhost:3001",
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: false,
