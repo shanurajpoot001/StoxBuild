@@ -20,7 +20,17 @@ import ScrollToTop from "./landing_page/ScrollToTop";
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
+// Redirect handler for static hosting
+(function(l) {
+    if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+    }
+}(window.location))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

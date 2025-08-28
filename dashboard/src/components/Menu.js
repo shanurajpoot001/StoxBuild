@@ -43,7 +43,8 @@ const Menu = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    window.location.href = "http://localhost:3000/";
+    const LANDING_URL = (process.env.REACT_APP_LANDING_URL || 'https://stoxbuild-frontend.onrender.com').replace(/\/$/, '');
+    window.location.href = `${LANDING_URL}/login`;
   };
 
   const menuClass = "menu";
@@ -93,7 +94,7 @@ const Menu = () => {
                     borderRadius: 6,
                     padding: 8,
                     minWidth: 160,
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                     zIndex: 1000
                   }}
                 >

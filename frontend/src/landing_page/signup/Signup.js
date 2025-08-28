@@ -10,11 +10,13 @@ const Register = () => {
     const [error, setError] = useState(''); // State to handle error message
     const navigate = useNavigate();
 
+    const API_BASE = process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com';
+
     const handleRegister = async (e) => {
         e.preventDefault();
         setError(''); // Clear any previous errors
         try {
-            const { data } = await axios.post('http://localhost:8080/api/auth/register', { name, email, password });
+            const { data } = await axios.post(`${API_BASE}/api/auth/register`, { name, email, password });
             localStorage.setItem('token', data.token);
             navigate('/login'); // Redirect to login if registration is successful
         } catch (error) {
