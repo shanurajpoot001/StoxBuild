@@ -6,10 +6,9 @@ import './Login.css';
 
  
   const navigateToDashboard = (username, token) => {
-    // Different origin (3001) can't read 3000 localStorage.
-    // Pass credentials via URL so dashboard can store its own localStorage.
+    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'https://stoxbuild-frontend.onrender.com').replace(/\/$/, '');
     const params = new URLSearchParams({ username, token });
-    window.location.href = `http://localhost:3001/?${params.toString()}`;
+    window.location.href = `${DASHBOARD_URL}/?${params.toString()}`;
   };
   
 
@@ -33,8 +32,6 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify({ username: data.username, token: data.token }));
 
             // Navigate to dashboard
-            // navigate('../dashboard/components/dashboard');
-            // navigate("http://localhost:3001/")
             navigateToDashboard(data.username, data.token);
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {

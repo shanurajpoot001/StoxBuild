@@ -4,6 +4,8 @@ import TopBar from "./TopBar";
 
 const Home = () => {
   useEffect(() => {
+    const LANDING_URL = (process.env.REACT_APP_LANDING_URL || 'https://stoxbuild-frontend.onrender.com').replace(/\/$/, '');
+
     // If URL has username+token (coming from login on port 3000), store locally.
     const search = new URLSearchParams(window.location.search);
     const urlUsername = search.get('username');
@@ -18,18 +20,18 @@ const Home = () => {
 
     const raw = localStorage.getItem("user");
     if (!raw) {
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = `${LANDING_URL}/login`;
       return;
     }
     try {
       const user = JSON.parse(raw);
       if (!user || !user.token) {
         localStorage.removeItem("user");
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = `${LANDING_URL}/login`;
       }
     } catch (_e) {
       localStorage.removeItem("user");
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = `${LANDING_URL}/login`;
     }
   }, []);
 

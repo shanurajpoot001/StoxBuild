@@ -24,7 +24,8 @@ app.use(
   cors({
     origin: [
       process.env.FRONTEND_ORIGIN || "http://localhost:3000",
-      "http://localhost:3001",
+      process.env.DASHBOARD_ORIGIN || "http://localhost:3001",
+      "https://stoxbuild-frontend.onrender.com",
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 
 // Auth routes
 app.use("/api/auth", authRoutes);
+
 // app.use("/api/auth", require("./routes/auth"));
 // app.get("/addHoldings", async (req, res) => {
 //   let tempHoldings = [

@@ -10,10 +10,11 @@ const TopBar = () => {
     }
   })();
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("user");
-  //   window.location.href = "http://localhost:3000/login";
-  // };
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    const LANDING_URL = (process.env.REACT_APP_LANDING_URL || 'https://stoxbuild-frontend.onrender.com').replace(/\/$/, '');
+    window.location.href = `${LANDING_URL}/login`;
+  };
 
   return (
     <div className="topbar-container">
@@ -29,7 +30,7 @@ const TopBar = () => {
           <p className="percent"></p>
         </div>
       </div>
-{/* 
+
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         {user?.username && (
           <span className="text-success">Welcome, {user.username}</span>
@@ -40,7 +41,7 @@ const TopBar = () => {
         >
           Logout
         </button>
-      </div> */}
+      </div>
 
       <Menu />
     </div>
