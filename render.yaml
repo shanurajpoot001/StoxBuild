@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: stoxbuild-backend
+    rootDir: backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: MONGO_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: DASHBOARD_ORIGIN
+        sync: false
+
+  - type: static
+    name: stoxbuild-frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_BASE
+        sync: false
+      - key: REACT_APP_DASHBOARD_URL
+        sync: false
+
+  - type: static
+    name: stoxbuild-dashboard
+    rootDir: dashboard
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_BASE
+        sync: false
+      - key: REACT_APP_LANDING_URL
+        sync: false
