@@ -1,5 +1,7 @@
 # dependencies
-**/node_modules/
+frontend/node_modules/
+backend/node_modules/
+dashboard/node_modules/
 
 # build outputs
 **/build/
@@ -10,9 +12,9 @@
 **/.env.*
 
 # EXCEPTIONS: allow committing env files for this repo (user request)
-!backend/.env
-!frontend/.env
-!dashboard/.env
+backend/.env
+frontend/.env
+dashboard/.env
 
 # logs
 **/npm-debug.log*
