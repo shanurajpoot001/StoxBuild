@@ -5,9 +5,14 @@
 **/build/
 **/dist/
 
-# env files
+# env files (ignored by default)
 **/.env
 **/.env.*
+
+# EXCEPTIONS: allow committing env files for this repo (user request)
+!backend/.env
+!frontend/.env
+!dashboard/.env
 
 # logs
 **/npm-debug.log*
