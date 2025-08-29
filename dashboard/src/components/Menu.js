@@ -52,7 +52,10 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>Dashboard</span>
+        <img src="logo.png" style={{ width: "50px" }} />
+      </div>
       <div className="menus">
         <ul>
           <li>

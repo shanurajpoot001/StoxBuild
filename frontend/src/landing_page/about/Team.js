@@ -16,6 +16,7 @@ function Team() {
         <div className="col-6 p-3 text-center">
           <img
             src="media/images/shanu.jpg"
+            alt="Shanu Pratap Rajpoot"
             style={{ borderRadius: "100%", width: "50%" }}
           />
           <h4 className="mt-5 font-weight-bold  font-family: Arial ">Shanu Pratap Rajpoot</h4>
@@ -38,9 +39,9 @@ function Team() {
             onClick={() => navigate('/')}
             >Homepage</a> / <a href="https://www.linkedin.com/in/shanu-pratap-rajpoot/"
             // onClick={() => navigate('/')}
-            
+            target='_blank'
             >TradingQnA</a> /{" "}
-            <a href="https://www.linkedin.com/in/shanu-pratap-rajpoot/">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/shanu-pratap-rajpoot/" target='_blank'>LinkedIn</a>
           </p>
         </div>
       </div>

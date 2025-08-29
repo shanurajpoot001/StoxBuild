@@ -5,11 +5,11 @@ import './Login.css';
 
 
  
-  const navigateToDashboard = (username, token) => {
-    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'https://stoxbuild-frontend.onrender.com').replace(/\/$/, '');
+const navigateToDashboard = (username, token) => {
+    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'https://stoxbuild-dashboard.onrender.com').replace(/\/$/, '');
     const params = new URLSearchParams({ username, token });
     window.location.href = `${DASHBOARD_URL}/?${params.toString()}`;
-  };
+};
   
 
 
@@ -24,6 +24,10 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        
+        console.log('API_BASE:', API_BASE);
+        console.log('Full URL:', `${API_BASE}/api/auth/login`);
+        
         try {
             const { data } = await axios.post(`${API_BASE}/api/auth/login`, { email, password });
 
@@ -34,6 +38,7 @@ const Login = () => {
             // Navigate to dashboard
             navigateToDashboard(data.username, data.token);
         } catch (error) {
+            console.error('Login error:', error);
             if (error.response && error.response.data && error.response.data.message) {
                 setError(error.response.data.message); 
                 navigate('/login');

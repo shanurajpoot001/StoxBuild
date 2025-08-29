@@ -17,24 +17,24 @@ function Universe() {
           <p className="text-small text-muted">Thematic investment platform</p>
         </div>
         <div className="col-4 p-3 mt-5">
-          <img src="media/images/smallcaseLogo.png" />
-          <p className="text-small text-muted">Thematic investment platform</p>
+          <img src="media/images/sensibullLogo.svg" />
+          <p className="text-small text-muted">ThemeWealth investment platform</p>
+        </div>
+        <div className="col-4 p-3 mt-5">
+          <img src="media/images/goldenpiLogo.png" />
+          <p className="text-small text-muted">GoldenPi investment platform</p>
         </div>
         <div className="col-4 p-3 mt-5">
           <img src="media/images/smallcaseLogo.png" />
           <p className="text-small text-muted">Thematic investment platform</p>
         </div>
         <div className="col-4 p-3 mt-5">
-          <img src="media/images/smallcaseLogo.png" />
-          <p className="text-small text-muted">Thematic investment platform</p>
+          <img src="media/images/sensibullLogo.svg" />
+          <p className="text-small text-muted">ThemeWealth investment platform</p>
         </div>
         <div className="col-4 p-3 mt-5">
-          <img src="media/images/smallcaseLogo.png" />
-          <p className="text-small text-muted">Thematic investment platform</p>
-        </div>
-        <div className="col-4 p-3 mt-5">
-          <img src="media/images/smallcaseLogo.png" />
-          <p className="text-small text-muted">Thematic investment platform</p>
+          <img src="media/images/goldenpiLogo.png" />
+          <p className="text-small text-muted">GoldenPi investment platform</p>
         </div>
         <button
           className="p-2 btn btn-primary fs-5 mb-5"

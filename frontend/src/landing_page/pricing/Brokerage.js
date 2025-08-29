@@ -5,7 +5,7 @@ function Brokerage() {
         <div className="container">
       <div className="row p-5 mt-5 text-center border-top">
         <div className="col-8 p-4">
-          <a href="" style={{ textDecoration: "none" }}>
+          <a href="https://zerodha.com/brokerage-calculator/" target='_blank' style={{ textDecoration: "none" }}>
             <h3 className="fs-5">Brokerage calculator</h3>
           </a>
           <ul

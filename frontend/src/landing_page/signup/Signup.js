@@ -15,11 +15,16 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         setError(''); // Clear any previous errors
+        
+        console.log('API_BASE:', API_BASE);
+        console.log('Full URL:', `${API_BASE}/api/auth/register`);
+        
         try {
             const { data } = await axios.post(`${API_BASE}/api/auth/register`, { name, email, password });
             localStorage.setItem('token', data.token);
             navigate('/login'); // Redirect to login if registration is successful
         } catch (error) {
+            console.error('Registration error:', error);
             if (error.response && error.response.data && error.response.data.message) {
                 setError(error.response.data.message); // Set error message if registration fails
                 navigate('/signup');

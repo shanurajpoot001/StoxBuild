@@ -1,25 +1,21 @@
-import React from "react";
-
- // Read logged-in user from localStorage
- const user = (() => {
-  try {
-    return JSON.parse(localStorage.getItem("user")) || null;
-  } catch (_e) {
-    return null;
-  }
-})();
-
-
-const username = user?.username || "USER";
-const initials = username
-  .split(" ")
-  .map((p) => p[0])
-  .join("")
-  .slice(0, 2)
-  .toUpperCase();
-
+import React, { useState, useEffect } from "react";
 
 const Summary = () => {
+  const [username, setUsername] = useState("USER");
+
+  useEffect(() => {
+    // Read logged-in user from localStorage
+    const user = (() => {
+      try {
+        return JSON.parse(localStorage.getItem("user")) || null;
+      } catch (_e) {
+        return null;
+      }
+    })();
+
+    setUsername(user?.username || "USER");
+  }, []);
+
   return (
     <>
       <div className="username">
