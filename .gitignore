@@ -7,16 +7,15 @@ dashboard/node_modules/
 **/build/
 **/dist/
 
-# env files (ignored by default)
+# env files (NEVER commit these - secrets only!)
 **/.env
 **/.env.*
-
-# EXCEPTIONS: allow committing env files for this repo (user request)
 backend/.env
 frontend/.env
 dashboard/.env
 
-# logs
+# Only allow .env.example files (templates without secrets)
+!**/.env.example
 **/npm-debug.log*
 **/yarn-debug.log*
 **/yarn-error.log*

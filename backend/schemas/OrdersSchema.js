@@ -5,6 +5,10 @@ const OrdersSchema = new Schema({
   qty: Number,
   price: Number,
   mode: String,
+  amount: Number,
+  status: { type: String, default: "EXECUTED" },
+  paymentMethod: { type: String, default: "Funds" },
+  createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = { OrdersSchema };

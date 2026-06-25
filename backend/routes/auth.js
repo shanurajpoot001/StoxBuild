@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 const { UserModel } = require("../model/UserModel");
 
 const router = express.Router();
@@ -11,8 +12,15 @@ const createToken = (userId, email) => {
   return jwt.sign({ sub: userId, email }, secret, { expiresIn: "7d" });
 };
 
+const requireDbConnection = (_req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({ message: "Database is still connecting. Please try again in a moment." });
+  }
+  return next();
+};
+
 // POST /api/auth/register
-router.post("/register", async (req, res) => {
+router.post("/register", requireDbConnection, async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
@@ -39,7 +47,7 @@ router.post("/register", async (req, res) => {
 });
 
 // POST /api/auth/login
-router.post("/login", async (req, res) => {
+router.post("/login", requireDbConnection, async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
