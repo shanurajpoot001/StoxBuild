@@ -94,7 +94,11 @@ p {
   }
 }
 
-/* Apply Fade-in animation on the container */
-.container {
-  animation: fadeIn 0.8s ease-out;
+@media (max-width: 576px) {
+  .login-page {
+    margin: 2rem auto !important;
+    padding: 1.25rem !important;
+    max-width: 100%;
+    box-shadow: none;
+  }
 }

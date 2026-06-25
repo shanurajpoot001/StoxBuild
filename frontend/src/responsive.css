@@ -1,0 +1,343 @@
+/* ============================================================
+   StoxFlow Landing — global responsive styles
+   Mobile-first; complements Bootstrap grid
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* CTA buttons (replace inline width: 20%) */
+.btn-cta {
+  width: auto !important;
+  min-width: 180px;
+  max-width: 100%;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Section spacing — reduce heavy padding on small screens */
+@media (max-width: 768px) {
+  .p-5 {
+    padding: 1.25rem !important;
+  }
+
+  .mt-5 {
+    margin-top: 1.5rem !important;
+  }
+
+  .mb-5 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  h1 {
+    font-size: 1.65rem !important;
+  }
+
+  h2,
+  .fs-2 {
+    font-size: 1.35rem !important;
+  }
+
+  h3,
+  .fs-3 {
+    font-size: 1.15rem !important;
+  }
+
+  .fs-4 {
+    font-size: 1.05rem !important;
+  }
+
+  .fs-5 {
+    font-size: 0.95rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-cta {
+    width: 100% !important;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 991px) {
+  .live-ticker-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .live-market-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .live-ticker-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .ticker-pill {
+    min-width: 150px;
+    scroll-snap-align: start;
+  }
+}
+
+/* Navbar */
+.navbar-brand img {
+  width: auto !important;
+  max-width: 140px;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .navbar .navbar-collapse {
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.75rem 0.75rem;
+    border: 1px solid #edf1f6;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 12px 28px rgba(16, 32, 51, 0.08);
+  }
+
+  .navbar .navbar-nav {
+    width: 100%;
+  }
+
+  .navbar .nav-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .navbar .nav-link {
+    padding: 0.65rem 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Product sections — link spacing */
+.product-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+}
+
+.product-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.product-badges img {
+  max-height: 44px;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .product-section .row {
+    flex-direction: column;
+  }
+
+  .product-section .col-6 {
+    text-align: center;
+  }
+
+  .product-section .col-6.p-5 {
+    padding: 1rem !important;
+    margin-top: 0 !important;
+  }
+
+  .product-links,
+  .product-badges {
+    justify-content: center;
+  }
+}
+
+/* Stats explore links */
+.stats-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.stats-links a {
+  text-decoration: none;
+}
+
+/* Pricing cards row */
+@media (max-width: 767px) {
+  .pricing-cards .col {
+    flex: 1 1 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Footer */
+footer .row > .col {
+  margin-bottom: 1.5rem;
+}
+
+footer img {
+  max-width: 160px !important;
+  width: auto !important;
+}
+
+.footer-social {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.footer-social a {
+  margin: 0 0.75rem;
+}
+
+@media (max-width: 767px) {
+  footer .row {
+    text-align: center;
+  }
+
+  footer .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Support page */
+#supportHero {
+  overflow-x: hidden;
+}
+
+#supportWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1.5rem 1rem;
+}
+
+#supportHero input {
+  padding: 14px 16px;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  margin: 0.75rem 0;
+}
+
+#supportHero .support-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+#supportHero .support-links a {
+  color: #fff;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  #supportWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  #supportHero .row.p-5 {
+    padding: 1rem !important;
+    margin: 0 !important;
+  }
+
+  #supportHero .support-links {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
+/* Create ticket grid */
+.ticket-grid .col-4 {
+  border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 991px) {
+  .ticket-grid .col-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .ticket-grid .col-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 1rem !important;
+  }
+}
+
+/* About team image */
+.team-photo {
+  border-radius: 50%;
+  width: 50%;
+  max-width: 220px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .team-photo {
+    width: 40%;
+    max-width: 180px;
+  }
+}
+
+/* Universe partner logos */
+.universe-grid img {
+  max-height: 48px;
+  width: auto;
+}
+
+/* Auth pages — mobile margins */
+@media (max-width: 576px) {
+  .login-page,
+  .signup-page {
+    margin: 2rem auto !important;
+    padding: 1.25rem !important;
+    max-width: calc(100% - 18px);
+    box-shadow: 0 10px 28px rgba(16, 32, 51, 0.08);
+    border-radius: 8px;
+  }
+}
+
+/* 404 */
+.not-found-page {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

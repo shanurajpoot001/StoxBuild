@@ -9,8 +9,8 @@ function Hero() {
           Free equity investments and flat ₹20 traday and F&O trades
         </h3>
       </div>
-      <div className="row p-5 mt-5 text-center">
-        <div className="col-4 p-4">
+      <div className="row p-3 p-md-5 mt-3 mt-md-5 text-center">
+        <div className="col-12 col-md-4 p-4">
           <img src="media/images/pricingEquity.svg" />
           <h1 className="fs-3">Free equity delivery</h1>
           <p className="text-muted">
@@ -18,7 +18,7 @@ function Hero() {
             0 brokerage.
           </p>
         </div>
-        <div className="col-4 p-4">
+        <div className="col-12 col-md-4 p-4">
           <img src="media/images/intradayTrades.svg" />
           <h1 className="fs-3">Intraday and F&O trades</h1>
           <p className="text-muted">
@@ -26,7 +26,7 @@ function Hero() {
             intraday trades across equity, currency, and commodity trades.
           </p>
         </div>
-        <div className="col-4 p-4">
+        <div className="col-12 col-md-4 p-4">
           <img src="media/images/pricingEquity.svg" />
           <h1 className="fs-3">Free direct MF</h1>
           <p className="text-muted">

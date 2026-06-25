@@ -1,0 +1,493 @@
+/* ============================================================
+   StoxFlow Dashboard — responsive layout
+   ============================================================ */
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.topbar-container {
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #444;
+}
+
+.mobile-menu-btn:hover {
+  background: #f5f5f5;
+}
+
+.menu-container {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.menu-brand img {
+  width: 40px;
+  height: auto;
+}
+
+.menus {
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.menus > ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menus li {
+  margin-right: 12px;
+}
+
+.dashboard-container {
+  align-items: stretch;
+  min-height: calc(100vh - 56px);
+}
+
+.dashboard-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.watchlist-container {
+  min-width: 0;
+}
+
+.watchlist-toggle-bar {
+  display: none;
+  width: 100%;
+  padding: 10px 16px;
+  background: #4184f3;
+  color: #fff;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.watchlist-toggle-bar:hover {
+  background: #3574d8;
+}
+
+.search {
+  color: #333 !important;
+  min-height: 48px;
+}
+
+.search::placeholder {
+  color: #999;
+}
+
+.chart-wrap {
+  max-width: 280px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+.chart-wrap canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.buy-window-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 99;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#buy-window {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 100%;
+  max-width: 480px;
+  height: auto !important;
+  max-height: 85vh;
+  overflow-y: auto;
+  margin: 0 auto;
+  border-radius: 12px 12px 0 0;
+  cursor: default;
+}
+
+@media (min-width: 769px) {
+  .buy-window-overlay {
+    align-items: center;
+    padding: 1rem;
+  }
+
+  #buy-window {
+    border-radius: 8px;
+    max-height: 70vh;
+  }
+}
+
+.funds {
+  flex-wrap: wrap;
+  justify-content: center !important;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.funds p {
+  width: 100%;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.data {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.data .first h3 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.orders {
+  height: auto;
+  min-height: 50vh;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .list li .actions {
+    display: flex !important;
+    position: static;
+    width: auto;
+    height: auto;
+    margin-top: 6px;
+    justify-content: flex-start;
+  }
+
+  .list li:hover {
+    cursor: default;
+  }
+}
+
+/* Desktop */
+@media (min-width: 993px) {
+  .watchlist-toggle-bar {
+    display: none !important;
+  }
+
+  .dashboard-container {
+    flex-direction: row;
+  }
+
+  .dashboard-main {
+    flex: 0 0 32%;
+    max-width: 32%;
+    min-height: calc(100vh - 56px);
+  }
+
+  .watchlist-container {
+    flex: 1;
+    max-height: none !important;
+    overflow-y: auto;
+  }
+
+  .content {
+    flex: 1;
+    max-width: 68%;
+    padding: 3% 2%;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .menus {
+    display: flex !important;
+  }
+}
+
+/* Tablet & mobile */
+@media (max-width: 992px) {
+  .indices-container {
+    display: none;
+  }
+
+  .topbar-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-container {
+    width: 100%;
+    flex-basis: 100%;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .menus {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    order: 3;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+  }
+
+  .menus.is-open {
+    display: flex;
+  }
+
+  .menus > ul {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .menus li {
+    display: block;
+    margin-right: 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .menus .menu,
+  .menus p.menu {
+    display: block;
+    padding: 10px 4px;
+    margin: 0;
+  }
+
+  .menus hr {
+    display: none;
+  }
+
+  .profile {
+    margin-left: 0;
+    padding: 8px 4px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .watchlist-toggle-bar {
+    display: flex;
+  }
+
+  .watchlist-container {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .watchlist-container.is-open {
+    max-height: 55vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .content {
+    flex-basis: 100%;
+    padding: 16px 12px;
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-header {
+    flex-direction: column;
+  }
+
+  .ai-controls,
+  .ai-metrics,
+  .ai-advice-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .ai-chart {
+    height: 320px;
+  }
+
+  .chart-wrap {
+    max-width: 220px;
+  }
+}
+
+/* Phone */
+@media (max-width: 576px) {
+  .menu-brand span {
+    font-size: 15px !important;
+  }
+
+  .content {
+    padding: 12px 10px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .order-table table {
+    min-width: 580px;
+    font-size: 0.85rem;
+  }
+
+  .order-table th,
+  .order-table td {
+    padding: 8px 6px;
+  }
+
+  .row .col h5 {
+    font-size: 1.35rem;
+  }
+
+  .data .second p {
+    white-space: normal;
+  }
+
+  .data hr {
+    display: none;
+  }
+
+  .data {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .commodity {
+    padding: 1.5rem;
+  }
+
+  .table {
+    padding: 1rem;
+  }
+
+  .fund-action-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .ai-chart-panel {
+    padding: 12px;
+  }
+
+  .ai-chart {
+    height: 280px;
+  }
+
+  .fund-action-controls .btn {
+    width: 100%;
+  }
+
+  .row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .row .col,
+  .col {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .item {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .itemInfo {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: 120px;
+  }
+
+  .actions span button {
+    width: 36px;
+    height: 28px;
+    font-size: 0.7rem;
+    margin-right: 4px;
+  }
+
+  #buy-window .inputs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #buy-window .inputs fieldset {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #buy-window .buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    padding: 0 16px 16px;
+  }
+
+  #buy-window .buttons > div {
+    display: flex;
+    gap: 8px;
+  }
+
+  #buy-window .buttons .btn {
+    flex: 1;
+    text-align: center;
+  }
+}

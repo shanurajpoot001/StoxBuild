@@ -33,5 +33,21 @@ export const options = {
 };
 
 export function VerticalGraph({ data }) {
-  return <Bar options={options} data={data} />;
+  const hasData = data?.datasets?.some((dataset) =>
+    dataset.data?.some((value) => Number(value) > 0)
+  );
+  const chartData = hasData
+    ? data
+    : {
+        labels: ["Waiting for live data"],
+        datasets: [
+          {
+            label: "Live current value",
+            data: [1],
+            backgroundColor: "rgba(180, 188, 200, 0.45)",
+          },
+        ],
+      };
+
+  return <Bar options={options} data={chartData} />;
 }

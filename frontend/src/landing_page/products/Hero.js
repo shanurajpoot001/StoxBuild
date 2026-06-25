@@ -17,7 +17,7 @@ function Hero() {
           <a href="https://grow.com/" target="_blank" style={{ textDecoration: "none" }}>
           {/* <a href="" onClick={() => navigate('../dashboard/components/dashboard')} target="_blank" style={{ textDecoration: "none" }}> */}
             investment offerings{" "}
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
           </a>
         </p>
       </div>

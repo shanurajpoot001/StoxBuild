@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
 
 import axios from "axios";
 
@@ -7,29 +6,65 @@ import GeneralContext from "./GeneralContext";
 
 import "./BuyActionWindow.css";
 
-const BuyActionWindow = ({ uid }) => {
+const BuyActionWindow = ({ uid, initialMode = "BUY" }) => {
+  const { closeBuyWindow } = useContext(GeneralContext);
+  const [orderMode, setOrderMode] = useState(initialMode);
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
+  const [paymentMethod, setPaymentMethod] = useState("Funds");
+  const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleBuyClick = () => {
-    const API_BASE = process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com';
-    axios.post(`${API_BASE}/newOrder`, {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+  const handleOrderClick = async () => {
+    const API_BASE = process.env.REACT_APP_API_BASE || "https://stoxbuild-backend.onrender.com";
+    setSubmitting(true);
+    setMessage("");
 
-    GeneralContext.closeBuyWindow();
+    try {
+      const { data } = await axios.post(`${API_BASE}/newOrder`, {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: orderMode,
+        paymentMethod,
+      });
+      window.dispatchEvent(new CustomEvent("stoxflow:order-executed", { detail: data }));
+      closeBuyWindow();
+    } catch (error) {
+      setMessage(error?.response?.data?.error || "Order failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const handleCancelClick = () => {
-    GeneralContext.closeBuyWindow();
-  };
+  const isSell = orderMode === "SELL";
 
   return (
-    <div className="container" id="buy-window" draggable="true">
+    <div className="container" id="buy-window">
       <div className="regular-order">
+        <div className="order-window-head">
+          <div>
+            <span>{uid}</span>
+            <h3>{isSell ? "Sell stock" : "Buy stock"}</h3>
+          </div>
+          <div className="order-mode-tabs" role="tablist" aria-label="Order type">
+            <button
+              type="button"
+              className={orderMode === "BUY" ? "active buy-tab" : ""}
+              onClick={() => setOrderMode("BUY")}
+            >
+              Buy
+            </button>
+            <button
+              type="button"
+              className={orderMode === "SELL" ? "active sell-tab" : ""}
+              onClick={() => setOrderMode("SELL")}
+            >
+              Sell
+            </button>
+          </div>
+        </div>
+
         <div className="inputs">
           <fieldset>
             <legend>Qty.</legend>
@@ -37,6 +72,7 @@ const BuyActionWindow = ({ uid }) => {
               type="number"
               name="qty"
               id="qty"
+              min="1"
               onChange={(e) => setStockQuantity(e.target.value)}
               value={stockQuantity}
             />
@@ -48,22 +84,32 @@ const BuyActionWindow = ({ uid }) => {
               name="price"
               id="price"
               step="0.05"
+              min="0"
               onChange={(e) => setStockPrice(e.target.value)}
               value={stockPrice}
             />
           </fieldset>
         </div>
+        <label className="payment-method">
+          <span>Payment method</span>
+          <select value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}>
+            <option value="Funds">Available funds</option>
+            <option value="UPI">UPI</option>
+            <option value="Netbanking">Netbanking</option>
+          </select>
+        </label>
+        {message && <p className="order-error">{message}</p>}
       </div>
 
       <div className="buttons">
-        <span>Margin required ₹140.65</span>
+        <span>{isSell ? "Sell credit adds to funds instantly" : "Buy amount debits available funds"}</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
-            Buy
-          </Link>
-          <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
+          <button type="button" className={`btn ${isSell ? "btn-red" : "btn-blue"}`} onClick={handleOrderClick} disabled={submitting}>
+            {submitting ? "Processing" : isSell ? "Sell" : "Buy"}
+          </button>
+          <button type="button" className="btn btn-grey" onClick={closeBuyWindow}>
             Cancel
-          </Link>
+          </button>
         </div>
       </div>
     </div>

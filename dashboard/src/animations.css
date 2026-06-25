@@ -1,0 +1,166 @@
+/* Dashboard premium animations */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpModal {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spinLoader {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulsePrice {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.dashboard-enter {
+  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.content-enter {
+  animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.buy-window-overlay {
+  animation: fadeInUp 0.25s ease both;
+}
+
+#buy-window {
+  animation: slideUpModal 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 769px) {
+  #buy-window {
+    animation: fadeInUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+.list li {
+  animation: rowFadeIn 0.4s ease both;
+}
+
+.list li:nth-child(1) { animation-delay: 0.05s; }
+.list li:nth-child(2) { animation-delay: 0.1s; }
+.list li:nth-child(3) { animation-delay: 0.15s; }
+.list li:nth-child(4) { animation-delay: 0.2s; }
+.list li:nth-child(5) { animation-delay: 0.25s; }
+.list li:nth-child(6) { animation-delay: 0.3s; }
+.list li:nth-child(7) { animation-delay: 0.35s; }
+.list li:nth-child(8) { animation-delay: 0.4s; }
+
+.order-table tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.order-table tbody tr:hover {
+  background: rgba(65, 132, 243, 0.04);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-row {
+  height: 42px;
+  margin-bottom: 8px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 180px;
+  margin-bottom: 16px;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f0f0f0;
+  border-top-color: #4184f3;
+  border-radius: 50%;
+  animation: spinLoader 0.7s linear infinite;
+}
+
+.menu .menu.selected {
+  transition: color 0.25s ease;
+}
+
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.watchlist-container.is-open {
+  animation: fadeInUp 0.3s ease both;
+}
+
+.menus.is-open {
+  animation: fadeInUp 0.25s ease both;
+}
+
+.profit, .up {
+  transition: color 0.3s ease;
+}

@@ -1,70 +1,89 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 function Navbar() {
-    return ( 
-         <nav
-      class="navbar navbar-expand-lg border-bottom navbar-light bg-light fixed-top"
+  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  const isActive = (path) => location.pathname === path;
+  const closeMenu = () => setIsMenuOpen(false);
+
+  return ( 
+    <nav
+      className={`navbar navbar-expand-lg border-bottom navbar-light bg-light fixed-top navbar-glass${scrolled ? ' navbar-scrolled' : ''}`}
       style={{ backgroundColor: "#FFF" }}
     >
-      <div class="container p-2">
-        <Link class="navbar-brand" to="/">
+      <div className="container p-2">
+        <Link className="navbar-brand" to="/">
           <img
             src="media/images/stoxflow-logo.svg"
-            style={{ width: "25%" }}
-            alt="Logo"
+            alt="StoxFlow Logo"
           />
         </Link>
         <button
-          class="navbar-toggler"
+          className={`navbar-toggler${isMenuOpen ? '' : ' collapsed'}`}
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setIsMenuOpen((open) => !open)}
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex" role="search">
-            <ul class="navbar-nav mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/signup">
-                  Signup
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/login">
-                  Login
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/about">
-                  About
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/product">
-                  Product
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/pricing">
-                  Pricing
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link active" to="/support">
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </form>
+        <div className={`collapse navbar-collapse${isMenuOpen ? ' show' : ''}`} id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/signup') ? ' fw-semibold' : ''}`} to="/signup" onClick={closeMenu}>
+                Register
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/ai-prediction') ? ' fw-semibold' : ''}`} to="/ai-prediction" onClick={closeMenu}>
+                AI Model
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/about') ? ' fw-semibold' : ''}`} to="/about" onClick={closeMenu}>
+                About
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/product') ? ' fw-semibold' : ''}`} to="/product" onClick={closeMenu}>
+                Product
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/pricing') ? ' fw-semibold' : ''}`} to="/pricing" onClick={closeMenu}>
+                Pricing
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/support') ? ' fw-semibold' : ''}`} to="/support" onClick={closeMenu}>
+                Support
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link${isActive('/documentation') ? ' fw-semibold' : ''}`} to="/documentation" onClick={closeMenu}>
+                Documentation
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
-     );
+  );
 }
 
 export default Navbar;

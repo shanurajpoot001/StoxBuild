@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
+import ScrollReveal from "./ui/ScrollReveal";
+import { useDashboardData } from "../hooks/useDashboardData";
+import { formatCompact, formatMoney, formatPercent } from "../services/marketData";
 
 const Summary = () => {
   const [username, setUsername] = useState("USER");
+  const { holdings, positions, orders, totals, asOf, quoteError } = useDashboardData();
+  const openingBalance = 75000;
+  const usedMargin = positions.reduce((sum, item) => sum + item.currentValue * 0.2, 0);
+  const availableMargin = Math.max(openingBalance + totals.pnl - usedMargin, 0);
 
   useEffect(() => {
-    // Read logged-in user from localStorage
     const user = (() => {
       try {
         return JSON.parse(localStorage.getItem("user")) || null;
@@ -12,68 +18,62 @@ const Summary = () => {
         return null;
       }
     })();
-
     setUsername(user?.username || "USER");
   }, []);
 
   return (
-    <>
-      <div className="username">
-        {/* <h6>Hi, User!</h6> */}
-        <p className="username">Welcome :  {username.toUpperCase()}</p>
-        <hr className="divider" />
-      </div>
-
-      <div className="section">
-        <span>
-          <p>Equity</p>
-        </span>
-
-        <div className="data">
-          <div className="first">
-            <h3>3.74k</h3>
-            <p>Margin available</p>
-          </div>
-          <hr />
-
-          <div className="second">
-            <p>
-              Margins used <span>0</span>{" "}
-            </p>
-            <p>
-              Opening balance <span>3.74k</span>{" "}
-            </p>
-          </div>
+    <div className="content-enter">
+      <ScrollReveal>
+        <div className="username">
+          <p className="username">Welcome : {username.toUpperCase()}</p>
+          <hr className="divider" />
         </div>
-        <hr className="divider" />
-      </div>
+      </ScrollReveal>
 
-      <div className="section">
-        <span>
-          <p>Holdings (13)</p>
-        </span>
-
-        <div className="data">
-          <div className="first">
-            <h3 className="profit">
-              1.55k <small>+5.20%</small>{" "}
-            </h3>
-            <p>P&L</p>
+      <ScrollReveal>
+        <div className="section">
+          <span><p>Equity</p></span>
+          <p className="live-status">
+            {quoteError
+              ? "Live quotes temporarily unavailable; showing portfolio database values."
+              : `Live prices updated ${asOf ? new Date(asOf).toLocaleTimeString() : "now"}`}
+          </p>
+          <div className="data">
+            <div className="first">
+              <h3>{formatCompact(availableMargin)}</h3>
+              <p>Margin available</p>
+            </div>
+            <hr />
+            <div className="second">
+              <p>Margins used <span>{formatMoney(usedMargin)}</span></p>
+              <p>Opening balance <span>{formatMoney(openingBalance)}</span></p>
+              <p>Orders today <span>{orders.length}</span></p>
+            </div>
           </div>
-          <hr />
-
-          <div className="second">
-            <p>
-              Current Value <span>31.43k</span>{" "}
-            </p>
-            <p>
-              Investment <span>29.88k</span>{" "}
-            </p>
-          </div>
+          <hr className="divider" />
         </div>
-        <hr className="divider" />
-      </div>
-    </>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="section">
+          <span><p>Holdings ({holdings.length})</p></span>
+          <div className="data">
+            <div className="first">
+              <h3 className={totals.pnl >= 0 ? "profit" : "loss"}>
+                {formatCompact(totals.pnl)} <small>{formatPercent(totals.pnlPercent)}</small>
+              </h3>
+              <p>P&L</p>
+            </div>
+            <hr />
+            <div className="second">
+              <p>Current Value <span>{formatMoney(totals.currentValue)}</span></p>
+              <p>Investment <span>{formatMoney(totals.investment)}</span></p>
+            </div>
+          </div>
+          <hr className="divider" />
+        </div>
+      </ScrollReveal>
+    </div>
   );
 };
 

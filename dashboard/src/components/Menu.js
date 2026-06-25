@@ -5,26 +5,25 @@ import { Link } from "react-router-dom";
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   useEffect(() => {
-    const mql = window.matchMedia('(max-width: 768px)');
-    const handle = (e) => setIsMobile(e.matches);
-    handle(mql);
-    mql.addEventListener('change', handle);
-    return () => mql.removeEventListener('change', handle);
+    const closeOnResize = () => {
+      if (window.innerWidth > 992) setIsNavOpen(false);
+    };
+    window.addEventListener("resize", closeOnResize);
+    return () => window.removeEventListener("resize", closeOnResize);
   }, []);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
+    setIsNavOpen(false);
   };
 
-  const handleProfileClick = (index) => {
+  const handleProfileClick = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
-  // Read logged-in user from localStorage
   const user = (() => {
     try {
       return JSON.parse(localStorage.getItem("user")) || null;
@@ -50,166 +49,48 @@ const Menu = () => {
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
 
+  const navLinks = [
+    { to: "/", label: "Dashboard", index: 0 },
+    { to: "/orders", label: "Orders", index: 1 },
+    { to: "/holdings", label: "Holdings", index: 2 },
+    { to: "/positions", label: "Positions", index: 3 },
+    { to: "/funds", label: "Funds", index: 4 },
+    { to: "/ai", label: "AI", index: 5 },
+    { to: "/apps", label: "Apps", index: 6 },
+  ];
+
   return (
     <div className="menu-container">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <div className="menu-brand">
         <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>Dashboard</span>
-        <img src="logo.png" style={{ width: "50px" }} />
+        <img src="logo.png" alt="Logo" />
       </div>
-      <div className="menus">
+
+      <button
+        type="button"
+        className="mobile-menu-btn"
+        aria-label="Toggle menu"
+        aria-expanded={isNavOpen}
+        onClick={() => setIsNavOpen((open) => !open)}
+      >
+        {isNavOpen ? "✕" : "☰"}
+      </button>
+
+      <div className={`menus ${isNavOpen ? "is-open" : ""}`}>
         <ul>
-          <li>
-            <Link
-              style={{ textDecoration: "none" }}
-              to="/"
-              onClick={() => handleMenuClick(0)}
-           >
-              <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>
-                Dashboard
-              </p>
-            </Link>
-          </li>
-
-          {/* Mobile: show a Portfolio dropdown containing Holdings/Positions/Funds (and Orders/Apps); Desktop: render them as separate items */}
-          {isMobile ? (
-            <li style={{ position: 'relative' }}>
-              <button
-                onClick={() => setIsPortfolioOpen(!isPortfolioOpen)}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0
-                }}
+          {navLinks.map(({ to, label, index }) => (
+            <li key={to}>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={to}
+                onClick={() => handleMenuClick(index)}
               >
-                <p className={selectedMenu === 2 || selectedMenu === 3 || selectedMenu === 4 || selectedMenu === 1 || selectedMenu === 6 ? activeMenuClass : menuClass}>
-                  Portfolio ▾
+                <p className={selectedMenu === index ? activeMenuClass : menuClass}>
+                  {label}
                 </p>
-              </button>
-              {isPortfolioOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: 0,
-                    background: '#ffffff',
-                    border: '1px solid #eee',
-                    borderRadius: 6,
-                    padding: 8,
-                    minWidth: 160,
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                    zIndex: 1000
-                  }}
-                >
-                  <div style={{ padding: '4px 6px' }}>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="/holdings"
-                      onClick={() => { setIsPortfolioOpen(false); handleMenuClick(2); }}
-                    >
-                      <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>Holdings</p>
-                    </Link>
-                  </div>
-                  <div style={{ padding: '4px 6px' }}>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="/positions"
-                      onClick={() => { setIsPortfolioOpen(false); handleMenuClick(3); }}
-                    >
-                      <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>Positions</p>
-                    </Link>
-                  </div>
-                  <div style={{ padding: '4px 6px' }}>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="funds"
-                      onClick={() => { setIsPortfolioOpen(false); handleMenuClick(4); }}
-                    >
-                      <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>Funds</p>
-                    </Link>
-                  </div>
-
-                  <hr />
-                  <div style={{ padding: '4px 6px' }}>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="/orders"
-                      onClick={() => { setIsPortfolioOpen(false); handleMenuClick(1); }}
-                    >
-                      <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>Orders</p>
-                    </Link>
-                  </div>
-                  <div style={{ padding: '4px 6px' }}>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="/apps"
-                      onClick={() => { setIsPortfolioOpen(false); handleMenuClick(6); }}
-                    >
-                      <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>Apps</p>
-                    </Link>
-                  </div>
-                </div>
-              )}
+              </Link>
             </li>
-          ) : (
-            <>
-              <li>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to="/orders"
-                  onClick={() => handleMenuClick(1)}
-                >
-                  <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>
-                    Orders
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to="/holdings"
-                  onClick={() => handleMenuClick(2)}
-                >
-                  <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>
-                    Holdings
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to="/positions"
-                  onClick={() => handleMenuClick(3)}
-                >
-                  <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>
-                    Positions
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to="funds"
-                  onClick={() => handleMenuClick(4)}
-                >
-                  <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
-                    Funds
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to="/apps"
-                  onClick={() => handleMenuClick(6)}
-                >
-                  <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
-                    Apps
-                  </p>
-                </Link>
-              </li>
-            </>
-          )}
+          ))}
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick} style={{ position: 'relative', cursor: 'pointer' }}>
@@ -228,10 +109,12 @@ const Menu = () => {
                 padding: 8,
                 marginTop: 6,
                 boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-                zIndex: 1000
+                zIndex: 1000,
+                minWidth: 120,
               }}
             >
               <button
+                type="button"
                 onClick={handleLogout}
                 style={{
                   background: '#dc3545',
@@ -240,7 +123,7 @@ const Menu = () => {
                   padding: '6px 12px',
                   borderRadius: 4,
                   cursor: 'pointer',
-                  width: '100%'
+                  width: '100%',
                 }}
               >
                 Logout

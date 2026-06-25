@@ -1,13 +1,25 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import ScrollReveal from '../../components/ui/ScrollReveal';
+import LazyImage from '../../components/ui/LazyImage';
+import { useCountUp } from '../../hooks/useCountUp';
 
+function StatCounter({ end, label }) {
+  const { ref, display } = useCountUp(end, 2200);
+  return (
+    <div ref={ref} className="premium-card p-3 text-center hover-lift">
+      <h2 className="stat-number fs-2 mb-2">{display}</h2>
+      <p className="text-muted mb-0">{label}</p>
+    </div>
+  );
+}
 
 function Stats() {
   const navigate = useNavigate();
-    return (  
-        <div className="container p-3">
-      <div className="row p-5">
-        <div className="col-6 p-5">
+  return (  
+    <div className="container p-3">
+      <div className="row p-3 p-md-5">
+        <ScrollReveal className="col-12 col-md-6 p-3 p-md-5" variant="reveal-left">
           <h1 className="fs-2 mb-5">Trust with confidence</h1>
           <h2 className="fs-4">Customer-first always</h2>
           <p className="text-muted">
@@ -30,23 +42,32 @@ function Stats() {
             facilitate transactions, but actively help you do better with your
             money.
           </p>
-        </div>
-        <div className="col-6 p-5">
-          <img src="media/images/ecosystem.png" style={{ width: "90%" }} />
-          <div className="text-center">
-            <a href="" onClick={() =>{ navigate('/Product')}} className="mx-5" style={{ textDecoration: "none" }}>
+
+          <div className="row g-3 mt-4">
+            <div className="col-6">
+              <StatCounter end="1.3+" label="Crore customers" />
+            </div>
+            <div className="col-6">
+              <StatCounter end="15%" label="Daily order volume" />
+            </div>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal className="col-12 col-md-6 p-3 p-md-5" variant="reveal-right" delay={150}>
+          <LazyImage src="media/images/ecosystem.png" style={{ width: "90%", maxWidth: "100%" }} alt="Ecosystem" />
+          <div className="stats-links">
+            <a href="/product" onClick={(e) => { e.preventDefault(); navigate('/product'); }} className="link-arrow">
               Explore our products{" "}
-              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
-            <a href="https://www.ig.com/en/demo-account" target="_blank"  style={{ textDecoration: "none" }}>
+            <a href="https://www.ig.com/en/demo-account" target="_blank" rel="noreferrer" className="link-arrow">
               Try Kite demo{" "}
-              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
-    );
+  );
 }
 
 export default Stats;

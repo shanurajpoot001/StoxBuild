@@ -6,14 +6,14 @@ function Footer() {
     return ( 
        <footer style={{ backgroundColor: "rgb(250, 250, 250)" }}>
       <div className="container border-top mt-5">
-        <div className="row mt-5">
-          <div className="col">
-            <img src="media/images/stoxflow-logo.svg" style={{ width: "50%" }} />
-            <p className='' style={{ fontSize: "14px" }}>
+        <div className="row mt-4 mt-md-5 g-4">
+          <div className="col-12 col-sm-6 col-lg-3">
+            <img src="media/images/stoxflow-logo.svg" alt="StoxFlow" className="footer-logo" />
+            <p style={{ fontSize: "14px" }}>
               &copy; 2010 - 2025, StoxFlow Technologies Pvt. Ltd.
             </p>
             
-           <div style={{ textAlign: "center", fontSize: "30px", margin: "20px 0" }}>
+           <div className="footer-social">
       {/* Instagram */}
 
       <a
@@ -60,45 +60,45 @@ function Footer() {
 
 
           </div>
-          <div className="col text-decoration-none">
+          <div className="col-12 col-sm-6 col-lg-3">
             <p>Company</p>
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>About</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>About</a>
             <br />
-            <a class="text-decoration-none" href=""   onClick={() =>{ navigate('/Product')}}>Products</a>
+            <a className="text-decoration-none" href=""   onClick={() =>{ navigate('/Product')}}>Products</a>
             <br />
-            <a class="text-decoration-none" href=""   onClick={() =>{ navigate('/Pricing')}}>Pricing</a>
+            <a className="text-decoration-none" href=""   onClick={() =>{ navigate('/Pricing')}}>Pricing</a>
             <br />
-            <a class="text-decoration-none" href=""   onClick={() =>{ navigate('/Support')}}>Referral programme</a>
+            <a className="text-decoration-none" href=""   onClick={() =>{ navigate('/Support')}}>Referral programme</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>Careers</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>Careers</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>StoxFlow.tech</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>StoxFlow.tech</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}} >Press & media</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}} >Press & media</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>StoxFlow cares (CSR)</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>StoxFlow cares (CSR)</a>
             <br />
           </div>
-          <div className="col">
+          <div className="col-12 col-sm-6 col-lg-3">
             <p>Support</p>
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Contact</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Contact</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Support portal</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Support portal</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>S-Connect blog</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>S-Connect blog</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Pricing')}}>List of charges</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Pricing')}}>List of charges</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Downloads & resources</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/Support')}}>Downloads & resources</a>
             <br />
           </div>
-          <div className="col">
+          <div className="col-12 col-sm-6 col-lg-3">
             <p>Account</p>
-            <a class="text-decoration-none" href="" onClick={() =>{ navigate('/signup')}}>Open an account</a>
+            <a className="text-decoration-none" href="" onClick={() =>{ navigate('/signup')}}>Open an account</a>
             <br />
-            <a class="text-decoration-none" href="" onClick={() =>{ navigate('/Pricing')}}>Fund transfer</a>
+            <a className="text-decoration-none" href="" onClick={() =>{ navigate('/Pricing')}}>Fund transfer</a>
             <br />
-            <a class="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>60 day challenge</a>
+            <a className="text-decoration-none" href=""  onClick={() =>{ navigate('/')}}>60 day challenge</a>
             <br />
           </div>
         </div>
