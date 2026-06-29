@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = (process.env.REACT_APP_API_BASE || 'http://localhost:8080').replace(/\/$/, '');
+const API_BASE = (process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com').replace(/\/$/, '');
 
 const fallbackAnswer = (question) => {
   const text = question.toLowerCase();

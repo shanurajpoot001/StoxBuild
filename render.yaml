@@ -15,9 +15,9 @@ services:
       - key: JWT_SECRET
         sync: false
       - key: FRONTEND_ORIGIN
-        sync: false
+        value: https://stoxbuild-frontend.onrender.com
       - key: DASHBOARD_ORIGIN
-        sync: false
+        value: https://stoxbuild-dashboard.onrender.com
 
   - type: static
     name: stoxbuild-frontend
@@ -26,9 +26,9 @@ services:
     staticPublishPath: build
     envVars:
       - key: REACT_APP_API_BASE
-        sync: false
+        value: https://stoxbuild-backend.onrender.com
       - key: REACT_APP_DASHBOARD_URL
-        sync: false
+        value: https://stoxbuild-dashboard.onrender.com
 
   - type: static
     name: stoxbuild-dashboard
@@ -37,6 +37,6 @@ services:
     staticPublishPath: build
     envVars:
       - key: REACT_APP_API_BASE
-        sync: false
+        value: https://stoxbuild-backend.onrender.com
       - key: REACT_APP_LANDING_URL
-        sync: false
+        value: https://stoxbuild-frontend.onrender.com

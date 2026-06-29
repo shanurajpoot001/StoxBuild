@@ -5,7 +5,7 @@ import './Login.css';
 import { useToast } from '../../components/ui/Toast';
 
 const navigateToDashboard = (username, token) => {
-    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'http://localhost:3001').replace(/\/$/, '');
+    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'https://stoxbuild-dashboard.onrender.com').replace(/\/$/, '');
     const params = new URLSearchParams({ username, token });
     window.location.href = `${DASHBOARD_URL}/?${params.toString()}`;
 };
@@ -19,7 +19,7 @@ const Login = () => {
     const navigate = useNavigate();
     const { showToast } = useToast();
 
-    const API_BASE = (process.env.REACT_APP_API_BASE || 'http://localhost:8080').replace(/\/$/, '');
+    const API_BASE = (process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com').replace(/\/$/, '');
 
     const handleLogin = async (e) => {
         e.preventDefault();

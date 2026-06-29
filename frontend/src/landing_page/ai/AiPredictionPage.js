@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import './AiPredictionPage.css';
 
-const API_BASE = (process.env.REACT_APP_API_BASE || 'http://localhost:8080').replace(/\/$/, '');
+const API_BASE = (process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com').replace(/\/$/, '');
 const symbols = ['INFY', 'TCS', 'RELIANCE', 'HDFCBANK', 'SBIN', 'WIPRO', 'M&M', 'HINDUNILVR'];
 
 const money = (value) =>

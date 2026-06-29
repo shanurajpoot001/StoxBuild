@@ -121,7 +121,7 @@ const WatchListActions = ({ uid }) => {
   };
 
   const redirectToRegister = () => {
-    const LANDING_URL = (process.env.REACT_APP_LANDING_URL || "http://localhost:3000").replace(/\/$/, "");
+    const LANDING_URL = (process.env.REACT_APP_LANDING_URL || "https://stoxbuild-frontend.onrender.com").replace(/\/$/, "");
     window.location.href = `${LANDING_URL}/signup`;
   };
 

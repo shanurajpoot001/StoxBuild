@@ -88,6 +88,7 @@ app.use(
       process.env.FRONTEND_ORIGIN || "http://localhost:3000",
       process.env.DASHBOARD_ORIGIN || "http://localhost:3001",
       "https://stoxbuild-frontend.onrender.com",
+      "https://stoxbuild-dashboard.onrender.com",
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

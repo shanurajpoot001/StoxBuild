@@ -13,8 +13,8 @@ const Register = () => {
     const [shake, setShake] = useState(false);
     const { showToast } = useToast();
 
-    const API_BASE = (process.env.REACT_APP_API_BASE || 'http://localhost:8080').replace(/\/$/, '');
-    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'http://localhost:3001').replace(/\/$/, '');
+    const API_BASE = (process.env.REACT_APP_API_BASE || 'https://stoxbuild-backend.onrender.com').replace(/\/$/, '');
+    const DASHBOARD_URL = (process.env.REACT_APP_DASHBOARD_URL || 'https://stoxbuild-dashboard.onrender.com').replace(/\/$/, '');
 
     const goToDashboard = (username, token) => {
         const params = new URLSearchParams({ username, token });
